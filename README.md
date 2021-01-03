@@ -1,70 +1,84 @@
-# octopus-immutable-store
+# crab-role-based-acl
 
 [![NPM version][npm-image]][npm-url] [![npm download][download-image]][download-url]
 
-[npm-image]: http://img.shields.io/npm/v/octopus-immutable-store.svg?style=flat-square
-[npm-url]: http://npmjs.org/package/octopus-immutable-store
-[download-image]: https://img.shields.io/npm/dm/octopus-immutable-store.svg?style=flat-square
-[download-url]: https://npmjs.org/package/octopus-immutable-store
+[npm-image]: http://img.shields.io/npm/v/crab-role-based-acl.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/crab-role-based-acl
+[download-image]: https://img.shields.io/npm/dm/crab-role-based-acl.svg?style=flat-square
+[download-url]: https://npmjs.org/package/crab-role-based-acl
 
 ## Install
 
-[![octopus-immutable-store](https://nodei.co/npm/octopus-immutable-store.png)](https://npmjs.org/package/octopus-immutable-store)
+[![crab-role-based-acl](https://nodei.co/npm/crab-role-based-acl.png)](https://npmjs.org/package/crab-role-based-acl)
 
 ```
-npm install --save octopus-immutable-store
+npm install --save crab-role-based-acl
 ```
 
 ## Features
 
 ```
-- Customize immuatble redux store
-- Durable redux store
+- Init JWT authentication
+- Role base access authorization support
+- Express middleware support
 ```
 
 ## Install
 
-- Install octopus-immutable-store
+- Install crab-role-based-acl
 
 ```
-npm install octopus-immutable-store
+npm install crab-role-based-acl
 ```
 
 ## How it work
 
-#### Override process env
-
-- Init redux store instance:
+## Middlewares
 
 ```
-import { initRootStore } from "octopus-immutable-store";
-
-initRootStore(store);
+import { roleBasedAuthorization, validAuthentication, validSupportOrigin } from "crab-role-based-acl";
 ```
 
-- Get current state:
+### 1. `validAuthentication`
+
+Using json web token to basic authentication.
+
+_valid request_:
 
 ```
-import { getRootState } from "octopus-immutable-store";
-
-getRootState();
+headers:
+    {
+        "Authorization": {jwtToken}
+    }
 ```
 
-- Dispatch a action as root:
+### 2. `validSupportOrigin`
+
+Using json web token to fitlering token support request origin.
+
+_valid token_:
 
 ```
-import { rootDispatch } from "octopus-immutable-store";
-
-rootDispatch(type, payload);
+token payload: {
+    'allowed-origins': [listSupportOrigin]
+}
 ```
 
-- Dispatch a debounce action as root:
+### 3. `roleBasedAuthorization`
+
+Using role-based access to authorization
+
+_used_:
 
 ```
-import { debounceRootDispatch } from "octopus-immutable-store";
-
-debounceRootDispatch(type, payload, wait = 2000);
+roleBasedAuthorization(allowRolesString)
 ```
+
+_valid allow roles string_:
+
+- role name with sso sever defines
+- multiple role names with `","`
+- allow all roles with `allowRolesString = "*"`
 
 ## LICENSE
 
