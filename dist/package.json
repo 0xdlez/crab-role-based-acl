@@ -1,0 +1,43 @@
+{
+  "name": "crab-role-based-acl",
+  "version": "1.0.0",
+  "description": "JWT authorization with role based access by Kraken Team!!!",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "format": "prettier --config .prettierrc --write src/**/*",
+    "build": "npm run clean && tsc && gulp bundle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krakenui/octopus-immutable-store.git"
+  },
+  "keywords": [
+    "@kraken",
+    "immutable",
+    "redux",
+    "store",
+    "octopus"
+  ],
+  "author": "Luong Phung <luonguit@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1"
+  },
+  "peerDependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.9.0",
+    "@types/express": "^4.17.3",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.0.0",
+    "typescript": "^3.8.3"
+  }
+}
